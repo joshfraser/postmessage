@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <title>backwards compatable postMessage demo</title>
+    <script src='postmessage.js'></script>
+</head>
+
+<body>
+
+<h3>backwards compatable postMessage demo</h3>
+
+This page is hosted on onlineaspect.com.<br /><br />
+
+<a href='#' onclick="send('hello world')">Send "hello world" message from parent to child</a><br /><br />
+<iframe id='xd_frame' src='http://joshfraser.com/code/postmessage/child.html' width='500' height='250'></iframe>
+
+<br /><br />
+This <a href='http://onlineaspect.com/uploads/postmessage/postmessage.js'>script</a> enables cross domain communication between frames on different frames.  We use <a href='https://developer.mozilla.org/en/DOM/window.postMessage'>window.postMessage</a> if possible, and fall back on a location.hash trick if that fails.<br /><br />
+
+<script type="text/javascript">
+
+    // pass the URL of the current parent page to the iframe using location.hash
+    src = 'http://joshfraser.com/code/postmessage/child.html#' + encodeURIComponent(document.location.href);
+    document.getElementById("xd_frame").src = src;
+
+    function send(msg) {
+        XD.postMessage(msg, src, frames[0]);
+        return false;
+    }
+    
+    // setup a callback to handle the dispatched MessageEvent. if window.postMessage is supported the passed
+    // event will have .data, .origin and .source properties. otherwise, it will only have the .data property.
+    XD.receiveMessage(function(message){
+        window.alert(message.data + " received on "+window.location.host);
+    }, 'http://joshfraser.com');
+
+</script>
+
+</body>
+
+</html>

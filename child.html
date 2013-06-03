@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <title>backwards compatable postMessage demo</title>
+    <script src='postmessage.js'></script>
+</head>
+
+<body>
+
+This page is hosted at joshfraser.com<br /><br />
+
+<a href='#' onclick="send('one')">Send message "one" from child to parent</a><br />
+<a href='#' onclick="send('two')">Send message "two" from child to parent</a>
+
+<script type="text/javascript">
+
+    // Get the parent page URL as it was passed in, for browsers that don't support
+    // window.postMessage (this URL could be hard-coded).
+    var parent_url = decodeURIComponent(document.location.hash.replace(/^#/, ''));
+
+    function send(msg) {
+        XD.postMessage(msg, parent_url, parent);
+        return false;
+    }
+
+    XD.receiveMessage(function(message){
+        window.alert(message.data + " received on "+window.location.host);
+    }, 'http://onlineaspect.com');
+
+</script>
+
+</body>
+
+</html>
