@@ -5,7 +5,7 @@ Backwards compatible window.postMessage()
 
 **Demo**
 
-[See an example of this library in action](http://onlineaspect.com/uploads/postmessage/parent.html) or [read how it works](http://www.onlineaspect.com/2010/01/15/backwards-compatible-postmessage/) on my blog.
+[See an example of this library in action](http://onlineaspect.com/uploads/postmessage/parent.html) or read a post on my blog about [how it works](http://www.onlineaspect.com/2010/01/15/backwards-compatible-postmessage/).
 
 **Usage**
 
